@@ -13,6 +13,7 @@ export class AppComponent implements OnInit, AfterViewInit{
 
   formValue ! : FormGroup;
   softwareObj : Software = new Software();
+  softwareData ! : any;
   constructor(private formbuilder: FormBuilder,private api : ApiService) {}
 
   title = 'Datatable';
@@ -32,7 +33,7 @@ export class AppComponent implements OnInit, AfterViewInit{
       soft_version : [''],
       soft_Desc : ['']
     })
-
+    this.getAllSoftwares();
   }
 
   postSoftware(){
@@ -42,16 +43,27 @@ export class AppComponent implements OnInit, AfterViewInit{
     this.softwareObj.soft_ref = this.formValue.value.soft_ref;
     this.softwareObj.soft_suppl = this.formValue.value.soft_suppl;
     this.softwareObj.soft_version = this.formValue.value.soft_version;
+    this.softwareObj.imageUrl = 'xxx';
     
     this.api.addSoftware(this.softwareObj)
     .subscribe(res=>{
       console.log(res);
       alert("Software Added Successfully")
+      let ref = document.getElementById('cancel')
+      ref?.click();
+      this.formValue.reset();
     },
     err=>{
       alert("something Went Wrong")
     })
     
+  }
+
+  getAllSoftwares() {
+    this.api.getSoftwares()
+    .subscribe(res=>{
+      this.softwareData = res;
+    })
   }
 
 }
