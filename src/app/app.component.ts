@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms'
 import { Software } from './app.model';
 import { ApiService } from './shared/api.service';
+
 declare const $: any;
 
 @Component({
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit, AfterViewInit{
   softwareData ! : any;
   showAdd ! : boolean;
   showUpdate ! : boolean;
+  p: number = 1;
   constructor(private formbuilder: FormBuilder,private api : ApiService) {}
 
   title = 'Datatable';
