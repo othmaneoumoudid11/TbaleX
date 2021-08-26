@@ -18,6 +18,7 @@ export class AppComponent implements OnInit, AfterViewInit{
   showAdd ! : boolean;
   showUpdate ! : boolean;
   p: number = 1;
+  term: any;
   constructor(private formbuilder: FormBuilder,private api : ApiService) {}
 
   title = 'Datatable';

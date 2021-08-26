@@ -9,6 +9,13 @@
 
 
 <div class="container  ">
+ 
+    <form>
+        <div class="mb-3 form-group">
+          <label for="exampleInputEmail1">Search Term</label>
+          <input type="text" [(ngModel)]="term" name="term" class="form-control">
+        </div>
+    </form>
     <table class="table">
         <thead>
           <tr>
@@ -22,7 +29,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let row of softwareData | paginate: { itemsPerPage: 5, currentPage: p}">
+          <tr *ngFor="let row of softwareData | paginate: { itemsPerPage: 6, currentPage: p} | filter : term">
             <td>{{row.soft_ref}}</td>
             <td>{{row.soft_manif}}</td>
             <td>{{row.soft_suppl}}</td>
@@ -36,7 +43,7 @@
           </tr>
         </tbody>
       </table>
-      <div>
+      <div class="cent"> 
           <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
 </div>
